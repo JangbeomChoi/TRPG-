@@ -23,7 +23,11 @@ namespace TRPG_개인과제
         {
             Console.Clear();
 
+            
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("=== \r\n  _____ ____   ____  ____  ______   ____      __ __  ____  _      _       ____   ____    ___      ____   ____   ____ \r\n / ___/|    \\ /    ||    \\|      | /    |    |  |  ||    || |    | |     /    | /    |  /  _]    |    \\ |    \\ /    |\r\n(   \\_ |  o  )  o  ||  D  )      ||  o  |    |  |  | |  | | |    | |    |  o  ||   __| /  [_     |  D  )|  o  )   __|\r\n \\__  ||   _/|     ||    /|_|  |_||     |    |  |  | |  | | |___ | |___ |     ||  |  ||    _]    |    / |   _/|  |  |\r\n /  \\ ||  |  |  _  ||    \\  |  |  |  _  |    |  :  | |  | |     ||     ||  _  ||  |_ ||   [_     |    \\ |  |  |  |_ |\r\n \\    ||  |  |  |  ||  .  \\ |  |  |  |  |     \\   /  |  | |     ||     ||  |  ||     ||     |    |  .  \\|  |  |     |\r\n  \\___||__|  |__|__||__|\\_| |__|  |__|__|      \\_/  |____||_____||_____||__|__||___,_||_____|    |__|\\_||__|  |___,_|\r\n                                                                                                                     \r\n ===");
+            Console.ResetColor();
+
             Console.WriteLine();
             Console.WriteLine("1. 게임 시작");
             Console.WriteLine("2. 종료");
@@ -169,13 +173,13 @@ namespace TRPG_개인과제
         }
         static void Rest()
         {
-
+            Console.Clear();
         }
 
         static void EasyDungeon()
         {
             Console.Clear();
-            Console.Clear();
+            
             Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.WriteLine("\r\n ______         __   __   __        \r\n|   __ \\.---.-.|  |_|  |_|  |.-----.\r\n|   __ <|  _  ||   _|   _|  ||  -__|\r\n|______/|___._||____|____|__||_____|\r\n      \r\n");
             Console.ResetColor();
@@ -205,6 +209,8 @@ namespace TRPG_개인과제
             
 
             Console.WriteLine();
+
+            Console.WriteLine();
             Console.WriteLine("[1] 공격하기");
             Console.WriteLine("[2] 도망가기");
 
@@ -223,11 +229,64 @@ namespace TRPG_개인과제
         static void NormalDungeon()
         {
             Console.Clear();
+
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("\r\n ______         __   __   __        \r\n|   __ \\.---.-.|  |_|  |_|  |.-----.\r\n|   __ <|  _  ||   _|   _|  ||  -__|\r\n|______/|___._||____|____|__||_____|\r\n      \r\n");
+            Console.ResetColor();
+            Console.WriteLine("--------------------------------------------");
+
+            Console.ForegroundColor= ConsoleColor.DarkYellow;
+            Console.WriteLine("             **         **      *");
+            Console.WriteLine("           *****       ****    ***");
+            Console.WriteLine("         ********    *******   **** \n         **************************");
+            Console.ResetColor();
+
+            Console.ForegroundColor= ConsoleColor.DarkBlue;
+            Console.WriteLine("         ████████░░░░░░░░░░████████        \r\n      ██░░░░░░░░░░░░░░░░░░░░░░░░░░██      \r\n    ██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░██    \r\n  ██░░░░░░░░░░░░░░░░░░            ░░██    \r\n  ██░░░░░░░░░░░░░░                  ░░██  \r\n██░░░░░░░░░░                        ░░░░██\r\n██░░░░░░░░░░                        ░░░░██\r\n██░░░░░░░░░░        ██        ██      ░░██\r\n██░░░░░░░░          ██        ██      ░░██\r\n██░░░░░░░░          ██        ██      ░░██\r\n██░░░░░░░░                            ░░██\r\n██░░░░░░░░░░                          ░░██\r\n██░░░░░░░░░░░░                        ░░██\r\n██░░░░░░░░░░░░░░                      ░░██\r\n██░░░░░░░░░░░░░░░░░░                ░░░░██\r\n████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░████\r\n    ██████████████████████████████████    ");
+            Console.ResetColor();
+
+            //Console.WriteLine("미구현 상태입니다.");
+
+            Monster monster = new Monster("킹슬라임", 45, 11, 20, 3000);
+            string message = $"일반 던전의 몬스터 {monster.MonsterName}이 출현했습니다!!!";
+            foreach (char c in message)
+            {
+                Console.Write(c);
+                Thread.Sleep(100);
+            }
+            Console.WriteLine(); //줄바꿈
+
+            string message1 = "전투를 준비하세요!";
+            foreach (char c in message1)
+            {
+                Console.Write(c);
+                Thread.Sleep(100);
+            }
+
+
+            
+            Console.WriteLine();
+           
+            Console.WriteLine();
+            Console.WriteLine("[1] 공격하기");
+            Console.WriteLine("[2] 도망가기");
+
+            int input = CheckValidInput(1, 2);
+            switch (input)
+            {
+                case 1:
+                    Battle(player, monster);
+                    break;
+                case 2:
+                    DungeonEntry();
+                    break;
+            }
         }
 
         static void HardDungeon()
         {
             Console.Clear();
+            Console.WriteLine("미구현 상태입니다.");
         }
 
         
@@ -544,8 +603,10 @@ namespace TRPG_개인과제
 
             Console.WriteLine();
 
-            Console.WriteLine("2. 아이템 정렬");
             Console.WriteLine("1. 장착 관리");
+            Console.WriteLine("2. 아이템 정렬");
+            Console.WriteLine();
+
             Console.WriteLine("0. 나가기");
 
             int input = CheckValidInput(0, 2);
