@@ -149,20 +149,16 @@ namespace TRPG_개인과제
             }
         }
 
-        //static void EasyDungeon()
+        //static void DungeonClear() //던전 클리어
         //{
+        //    Console.Clear();
 
+        //    Console.ForegroundColor = ConsoleColor.DarkGray;
+        //    Console.WriteLine("던전 클리어");
+        //    Console.ResetColor(); //컬러 리셋
+        //    Console.WriteLine("축하합니다!!!");
+        //    Console.WriteLine();
         //}
-        static void DungeonClear() //던전 클리어
-        {
-            Console.Clear();
-
-            Console.ForegroundColor = ConsoleColor.DarkGray;
-            Console.WriteLine("던전입구");
-            Console.ResetColor(); //컬러 리셋
-            Console.WriteLine("축하합니다!!!");
-            Console.WriteLine();
-        }
 
         static void GainGold() //임시로 상점기능을 확인하기위해 1000골드를 얻는 코드
         {           
