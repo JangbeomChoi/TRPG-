@@ -1,4 +1,6 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Dynamic;
+using System.Numerics;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Xml.Serialization;
 
@@ -66,7 +68,7 @@ namespace TRPG_개인과제
             Console.Clear();
 
             Console.ForegroundColor = ConsoleColor.Cyan; //컬러cyan
-            Console.WriteLine("메인");
+            Console.WriteLine("\r\n _______         __        \r\n|   |   |.---.-.|__|.-----.\r\n|       ||  _  ||  ||     |\r\n|__|_|__||___._||__||__|__|\r\n   \r\n");
             Console.ResetColor(); //컬러 리셋
             Console.WriteLine();
 
@@ -116,55 +118,188 @@ namespace TRPG_개인과제
         {
             Console.Clear();
 
-            Console.ForegroundColor = ConsoleColor.DarkGray; 
-            Console.WriteLine("던전입구");
-            Console.ResetColor(); //컬러 리셋
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("\r\n _____                                      \r\n|     \\.--.--.-----.-----.-----.-----.-----.\r\n|  --  |  |  |     |  _  |  -__|  _  |     |\r\n|_____/|_____|__|__|___  |_____|_____|__|__|\r\n                   |_____|     \r\n    \r\n ");
+            Console.ResetColor ();
+            Console.WriteLine();
+
             Console.WriteLine("이곳에서 던전으로 들어가기전 활동을 할 수 있습니다.");
             Console.WriteLine();
 
-            Console.WriteLine("1. 쉬운 던전    | 방어력 5 이상 권장");
-            Console.WriteLine("2. 일반 던전    | 방어력 11 이상 권장");
+            Console.WriteLine("1. 쉬운 던전      | 방어력 5 이상 권장");
+            Console.WriteLine("2. 일반 던전      | 방어력 11 이상 권장");
             Console.WriteLine("3. 어려운 던전    | 방어력 17 이상 권장");
+            Console.WriteLine();
+            Console.WriteLine("4. 상점");
+            Console.WriteLine("5. 휴식하기");
+            Console.WriteLine();
             Console.WriteLine("0. 나가기");
             Console.WriteLine();
 
-            Console.WriteLine("원하시는 행동을 선택해주세요.");
-            Console.WriteLine(">>>");
+            Console.WriteLine($"현재 체력: {player.Hp}");
+            Console.WriteLine($"보유 골드: {player.Gold}G");
+            Console.WriteLine();
 
-            int input = CheckValidInput(0, 3);
+            Console.WriteLine("원하시는 행동을 선택해주세요.");
+            Console.Write(">>>");
+
+            int input = CheckValidInput(0, 5);
             switch (input)
             {
                 case 0:
-                    DisplayGameStart();
+                    DisplayGameIntro();
                     break;
                 case 1:
-                    DungeonLevel.EasyDungeon();
+                    EasyDungeon();
                     break;
                 case 2:
-                    DungeonLevel.NormalDungeon();
+                    NormalDungeon();
                     break;
                 case 3:
-                    DungeonLevel.HardDungeon();
+                    HardDungeon();
+                    break;
+                case 4:
+                    Shop();
+                    break;
+                case 5:
+                    Rest();
+                    break;
+                    
+            }
+        }
+        static void Rest()
+        {
+
+        }
+
+        static void EasyDungeon()
+        {
+            Console.Clear();
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("\r\n ______         __   __   __        \r\n|   __ \\.---.-.|  |_|  |_|  |.-----.\r\n|   __ <|  _  ||   _|   _|  ||  -__|\r\n|______/|___._||____|____|__||_____|\r\n      \r\n");
+            Console.ResetColor();
+            Console.WriteLine("--------------------------------------------");
+
+
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("        ,    ,\r\n       /(.-\"\"-.)\\\r\n   |\\  \\/      \\/  /|\r\n   | \\ / =.  .= \\ / |\r\n   \\( \\   o\\/o   / )/\r\n    \\_, '-/  \\-' ,_/\r\n      /   \\__/   \\\r\n      \\ \\__/()\\__/\r\n       \\ ,__\\/__,\r\n        \\_____/\r\n");
+            Console.ResetColor();
+            Console.WriteLine();
+
+            Monster monster = new Monster("고블린", 15, 3, 5, 1000);
+            string message = $"쉬운 던전의 몬스터 {monster.MonsterName}이 출현했습니다!!!";
+            foreach (char c in message)
+            {
+                Console.Write(c);
+                Thread.Sleep(100);
+            }
+            Console.WriteLine(); //줄바꿈
+
+            string message1 = "전투를 준비하세요!";
+            foreach (char c in message1)
+            {
+                Console.Write(c);
+                Thread.Sleep(100);
+            }
+            
+
+            Console.WriteLine();
+            Console.WriteLine("[1] 공격하기");
+            Console.WriteLine("[2] 도망가기");
+
+            int input = CheckValidInput(1, 2);
+            switch (input)
+            {
+                case 1:
+                    Battle(player, monster);
+                    break;
+                case 2:
+                    DungeonEntry();
                     break;
             }
         }
 
-        //static void DungeonClear() //던전 클리어
-        //{
-        //    Console.Clear();
+        static void NormalDungeon()
+        {
+            Console.Clear();
+        }
 
-        //    Console.ForegroundColor = ConsoleColor.DarkGray;
-        //    Console.WriteLine("던전 클리어");
-        //    Console.ResetColor(); //컬러 리셋
-        //    Console.WriteLine("축하합니다!!!");
-        //    Console.WriteLine();
-        //}
+        static void HardDungeon()
+        {
+            Console.Clear();
+        }
+
+        
+
+        static void Battle(Character player, Monster monster)
+        {
+            Console.Clear();
+            Console.WriteLine($"{monster.MonsterName}와 전투 시작!");
+
+            while (player.Hp > 0 && monster.MonsterHealth > 0)
+            {
+                // 플레이어의 공격
+                int playerDamage = player.Atk + (player.EquippedWeapon != null ? player.EquippedWeapon.AttackPower : 0);
+                monster.MonsterHealth -= playerDamage;
+                Console.WriteLine($"{player.Name}의 공격! {monster.MonsterName}의 체력: {monster.MonsterHealth}");
+
+                // 몬스터의 공격
+                int monsterDamage = monster.MonsterAttack;
+                player.Hp -= monsterDamage;
+                Console.WriteLine($"{monster.MonsterName}의 공격! {player.Name}의 체력: {player.Hp}");
+
+                Console.WriteLine();
+            }
+
+            if (player.Hp <= 0)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine($"{player.Name}이(가) 패배했습니다.");
+                Console.ResetColor();
+                Console.WriteLine("던전으로 돌아갑니다.");
+                Console.ReadKey(intercept: true);
+                DungeonEntry();
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"{player.Name}이(가) 승리했습니다!");
+                Console.ResetColor();
+
+                Console.WriteLine($"{monster.MonsterName}을(를) 처치하였습니다.");
+                Console.WriteLine();
+
+                Console.WriteLine("쉬운 던전을 클리어 하였습니다");
+                Console.WriteLine();
+
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("[탐험 결과]");
+                Console.WriteLine($"남은 체력: {player.Hp}");
+                
+
+                int goldEarned = monster.MonsterGold;
+                player.Gold += goldEarned;
+
+                
+                Console.WriteLine($"{goldEarned} G를 획득하였습니다.");
+                Console.ResetColor();
+                Console.WriteLine();
+
+                Console.WriteLine("던전으로 돌아갑니다.");
+                Console.ReadKey(intercept: true);
+                DungeonEntry();
+            }
+
+
+        }
+
 
         static void GainGold() //임시로 상점기능을 확인하기위해 1000골드를 얻는 코드
         {           
             player.Gold += 10000;
                         
-            Console.ForegroundColor = ConsoleColor.Magenta; //컬러 마젠타
+            Console.ForegroundColor = ConsoleColor.DarkYellow; //컬러 다크옐로우
             Console.WriteLine("10000골드를 얻었습니다!");
             Console.ResetColor(); //컬러 리셋
 
@@ -180,7 +315,7 @@ namespace TRPG_개인과제
             Console.Clear();
 
             Console.ForegroundColor = ConsoleColor.Green; //컬러 그린
-            Console.WriteLine("상태보기");
+            Console.WriteLine("\r\n _______ __          __               \r\n|     __|  |_.---.-.|  |_.--.--.-----.\r\n|__     |   _|  _  ||   _|  |  |__ --|\r\n|_______|____|___._||____|_____|_____|\r\n  \r\n");
             Console.ResetColor(); //컬러 리셋
             
             Console.WriteLine("캐릭터의 정보를 표시합니다.");
@@ -192,7 +327,11 @@ namespace TRPG_개인과제
             Console.WriteLine($"공격력 : {player.Atk} (+{(player.EquippedWeapon != null && player.EquippedArmor.IsPurchased ? player.EquippedWeapon.AttackPower : 0)})");
             Console.WriteLine($"방어력 : {player.Def} (+{(player.EquippedArmor != null && player.EquippedArmor.IsPurchased ? player.EquippedArmor.Armor : 0)})");      
             Console.WriteLine($"체력 : {player.Hp}           ");
+
+            Console.ForegroundColor= ConsoleColor.DarkYellow;
             Console.WriteLine($"Gold : {player.Gold} G        ");
+            Console.ResetColor();
+
             Console.WriteLine("----------------------------------------------------"); 
             Console.WriteLine();
 
@@ -205,7 +344,7 @@ namespace TRPG_개인과제
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Yellow; //컬러 노랑
-            Console.WriteLine("상점");
+            Console.WriteLine("\r\n _______ __                \r\n|     __|  |--.-----.-----.\r\n|__     |     |  _  |  _  |\r\n|_______|__|__|_____|   __|\r\n                    |__|   \r\n");
             Console.ResetColor(); //컬러 리셋
 
             Console.WriteLine("필요한 아이템을 얻을 수 있는 상점입니다.");
@@ -234,8 +373,10 @@ namespace TRPG_개인과제
             //Console.WriteLine($"- 6. {item6.ItemName}        | 공격력 {item6.AttackPower}  | {item6.Description}                | {item6.ItemGold} G | {(item6.IsPurchased ? "구매완료[v]" : "")}");
             Console.WriteLine();
 
-            Console.WriteLine("2. 판매하기");
             Console.WriteLine("1. 구매하기");
+            Console.WriteLine("2. 판매하기");
+            Console.WriteLine();
+
             Console.WriteLine("0. 나가기");
 
 
@@ -275,7 +416,7 @@ namespace TRPG_개인과제
             Console.Clear();
 
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("상점 - 구매하기");
+            Console.WriteLine("\r\n ______              \r\n|   __ \\.--.--.--.--.\r\n|   __ <|  |  |  |  |\r\n|______/|_____|___  |\r\n              |_____|\r\n");
             Console.ResetColor();
 
             Console.WriteLine("구매할 아이템의 번호를 입력해주세요.");
@@ -362,7 +503,7 @@ namespace TRPG_개인과제
             Console.Clear();
 
             Console.ForegroundColor = ConsoleColor.Red; //컬러 레드
-            Console.WriteLine("인벤토리");
+            Console.WriteLine("\r\n _______                           __                    \r\n|_     _|.-----.--.--.-----.-----.|  |_.-----.----.--.--.\r\n _|   |_ |     |  |  |  -__|     ||   _|  _  |   _|  |  |\r\n|_______||__|__|\\___/|_____|__|__||____|_____|__| |___  |\r\n                                                  |_____|\r\n");
             Console.ResetColor(); //컬러 리셋
 
             Console.WriteLine("보유 중인 아이템을 관리할 수 있습니다.");
@@ -445,7 +586,7 @@ namespace TRPG_개인과제
             Console.Clear();
 
             Console.ForegroundColor= ConsoleColor.Yellow;
-            Console.WriteLine("상점 - 판매하기");
+            Console.WriteLine("\r\n _______         __ __ \r\n|     __|.-----.|  |  |\r\n|__     ||  -__||  |  |\r\n|_______||_____||__|__|\r\n                       \r\n");
             Console.ResetColor();
 
             Console.WriteLine();
@@ -523,7 +664,7 @@ namespace TRPG_개인과제
             Console.Clear();
 
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("인벤토리 - 아이템 정렬(이름순)");
+            Console.WriteLine("\r\n _______ __                                   _______                       \r\n|_     _|  |_.-----.--------.     ______     |    |  |.---.-.--------.-----.\r\n _|   |_|   _|  -__|        |    |______|    |       ||  _  |        |  -__|\r\n|_______|____|_____|__|__|__|                |__|____||___._|__|__|__|_____|\r\n                                                                            \r\n");
             Console.ResetColor();
 
             Console.WriteLine("보유 중인 아이템을 이름순으로 정렬 할 수 있습니다.");
@@ -564,7 +705,7 @@ namespace TRPG_개인과제
             Console.Clear();
 
             Console.ForegroundColor = ConsoleColor.Red; //컬러 레드
-            Console.WriteLine("인벤토리 - 장착 관리");
+            Console.WriteLine("\r\n _______ __                   _______                                     \r\n|_     _|  |_.-----.--------.|   |   |.---.-.-----.---.-.-----.-----.----.\r\n _|   |_|   _|  -__|        ||       ||  _  |     |  _  |  _  |  -__|   _|\r\n|_______|____|_____|__|__|__||__|_|__||___._|__|__|___._|___  |_____|__|  \r\n                                                        |_____|           \r\n");
             Console.ResetColor(); //컬러 리셋
 
             Console.WriteLine("보유 중인 아이템을 관리할 수 있습니다.");
@@ -709,5 +850,6 @@ namespace TRPG_개인과제
         }
 
     }
+    
 }
     

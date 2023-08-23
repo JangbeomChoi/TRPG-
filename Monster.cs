@@ -14,13 +14,15 @@ namespace TRPG_개인과제
         public int MonsterHealth { get; set; }
         public int MonsterAttack { get; }
         public int MonsterDefense { get; }
+        public int MonsterGold { get; set; }
 
-        public Monster(string monsterName, int monsterHealth, int monsterAttack, int monsterDefense)
+        public Monster(string monsterName, int monsterHealth, int monsterAttack, int monsterDefense, int monsterGold)
         {
             MonsterName = monsterName;
             MonsterHealth = monsterHealth;
             MonsterAttack = monsterAttack;
             MonsterDefense = monsterDefense;
+            MonsterGold = monsterGold;
         }
 
         public void MonsterTakeDamage(int damage)
