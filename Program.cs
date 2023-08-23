@@ -112,19 +112,36 @@ namespace TRPG_개인과제
                     break;
             }
         }
-        static void DungeonEntry() //던전 
+        static void DungeonEntry() //던전 입구
         {
             Console.Clear();
 
-            Console.ForegroundColor = ConsoleColor.DarkGray; //컬러 그린
+            Console.ForegroundColor = ConsoleColor.DarkGray; 
             Console.WriteLine("던전입구");
             Console.ResetColor(); //컬러 리셋
             Console.WriteLine("이곳에서 던전으로 들어가기전 활동을 할 수 있습니다.");
             Console.WriteLine();
 
+            Console.WriteLine("1. 쉬운 던전    | 방어력 5 이상 권장");
+            Console.WriteLine("2. 일반 던전    | 방어력 11 이상 권장");
+            Console.WriteLine("3. 어려운 던전    | 방어력 17 이상 권장");
+            Console.WriteLine("0. 나가기");
+
+            Console.WriteLine("원하시는 행동을 선택해주세요.");
+            Console.WriteLine(">>>");
 
 
 
+        }
+        static void DungeonClear() //던전 클리어
+        {
+            Console.Clear();
+
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine("던전입구");
+            Console.ResetColor(); //컬러 리셋
+            Console.WriteLine("축하합니다!!!");
+            Console.WriteLine();
         }
 
         static void GainGold() //임시로 상점기능을 확인하기위해 1000골드를 얻는 코드
