@@ -126,13 +126,33 @@ namespace TRPG_개인과제
             Console.WriteLine("2. 일반 던전    | 방어력 11 이상 권장");
             Console.WriteLine("3. 어려운 던전    | 방어력 17 이상 권장");
             Console.WriteLine("0. 나가기");
+            Console.WriteLine();
 
             Console.WriteLine("원하시는 행동을 선택해주세요.");
             Console.WriteLine(">>>");
 
-
-
+            int input = CheckValidInput(0, 3);
+            switch (input)
+            {
+                case 0:
+                    DisplayGameStart();
+                    break;
+                case 1:
+                    DungeonLevel.EasyDungeon();
+                    break;
+                case 2:
+                    DungeonLevel.NormalDungeon();
+                    break;
+                case 3:
+                    DungeonLevel.HardDungeon();
+                    break;
+            }
         }
+
+        //static void EasyDungeon()
+        //{
+
+        //}
         static void DungeonClear() //던전 클리어
         {
             Console.Clear();
