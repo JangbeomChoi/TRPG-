@@ -1,0 +1,15 @@
+C:\Users\jangb\OneDrive\Desktop\c# 스파르타 코딩\TRPG 개인과제\TRPG 개인과제\bin\Debug\net6.0\TRPG 개인과제.exe
+C:\Users\jangb\OneDrive\Desktop\c# 스파르타 코딩\TRPG 개인과제\TRPG 개인과제\bin\Debug\net6.0\TRPG 개인과제.deps.json
+C:\Users\jangb\OneDrive\Desktop\c# 스파르타 코딩\TRPG 개인과제\TRPG 개인과제\bin\Debug\net6.0\TRPG 개인과제.runtimeconfig.json
+C:\Users\jangb\OneDrive\Desktop\c# 스파르타 코딩\TRPG 개인과제\TRPG 개인과제\bin\Debug\net6.0\TRPG 개인과제.dll
+C:\Users\jangb\OneDrive\Desktop\c# 스파르타 코딩\TRPG 개인과제\TRPG 개인과제\bin\Debug\net6.0\TRPG 개인과제.pdb
+C:\Users\jangb\OneDrive\Desktop\c# 스파르타 코딩\TRPG 개인과제\TRPG 개인과제\obj\Debug\net6.0\TRPG 개인과제.csproj.AssemblyReference.cache
+C:\Users\jangb\OneDrive\Desktop\c# 스파르타 코딩\TRPG 개인과제\TRPG 개인과제\obj\Debug\net6.0\TRPG 개인과제.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jangb\OneDrive\Desktop\c# 스파르타 코딩\TRPG 개인과제\TRPG 개인과제\obj\Debug\net6.0\TRPG 개인과제.AssemblyInfoInputs.cache
+C:\Users\jangb\OneDrive\Desktop\c# 스파르타 코딩\TRPG 개인과제\TRPG 개인과제\obj\Debug\net6.0\TRPG 개인과제.AssemblyInfo.cs
+C:\Users\jangb\OneDrive\Desktop\c# 스파르타 코딩\TRPG 개인과제\TRPG 개인과제\obj\Debug\net6.0\TRPG 개인과제.csproj.CoreCompileInputs.cache
+C:\Users\jangb\OneDrive\Desktop\c# 스파르타 코딩\TRPG 개인과제\TRPG 개인과제\obj\Debug\net6.0\TRPG 개인과제.dll
+C:\Users\jangb\OneDrive\Desktop\c# 스파르타 코딩\TRPG 개인과제\TRPG 개인과제\obj\Debug\net6.0\refint\TRPG 개인과제.dll
+C:\Users\jangb\OneDrive\Desktop\c# 스파르타 코딩\TRPG 개인과제\TRPG 개인과제\obj\Debug\net6.0\TRPG 개인과제.pdb
+C:\Users\jangb\OneDrive\Desktop\c# 스파르타 코딩\TRPG 개인과제\TRPG 개인과제\obj\Debug\net6.0\TRPG 개인과제.genruntimeconfig.cache
+C:\Users\jangb\OneDrive\Desktop\c# 스파르타 코딩\TRPG 개인과제\TRPG 개인과제\obj\Debug\net6.0\ref\TRPG 개인과제.dll
